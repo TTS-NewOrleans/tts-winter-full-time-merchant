@@ -31,6 +31,8 @@
 
 
   <ul class="nav navbar-nav navbar-right">
+
+    <li><%= link_to fa_icon('shopping-cart', text: 'Your Cart'), edit_cart_path %></li>
     <!-- Search Form -->
     <div class="pull-left">
       <%= form_tag(shop_path, method: :get, role: "search", class: "form-inline") do %>
