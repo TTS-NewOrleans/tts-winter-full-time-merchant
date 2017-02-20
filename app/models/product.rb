@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to :category, optional: true
+  has_many :line_items
+  before_destroy :ensure_not_referenced_by_any_line_item
 
   has_attached_file :avatar,
                     styles: { medium: "300x300#",
@@ -14,6 +16,18 @@ class Product < ApplicationRecord
 
   def self.search_by_name_or_description(string)
     where("name LIKE ? OR description LIKE ?", "%#{string}%", "%#{string}%")
+  end
+
+  private
+
+  # Make sure there are no line items referencing this product
+  def ensure_not_referenced_by_any_line_item
+    if line_items.empty?
+      return true
+    else
+      errors.add(:base, 'Line Items Present')
+      return false
+    end
   end
 
 end
