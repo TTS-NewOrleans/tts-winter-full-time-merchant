@@ -1,6 +1,8 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   <ul class="nav navbar-nav">
+
+    <!-- Shop Dropdown Menu -->
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
         Shop <span class="caret"></span>
@@ -13,26 +15,29 @@
         <li><%= link_to "All Products", shop_path %></li>
       </ul>
     </li>
+
+    <!-- About View -->
     <li><%= link_to 'About', about_path %></li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Backroom <span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <li><%= link_to "Brands", admin_brands_path %></li>
-        <li><%= link_to "Categories", admin_categories_path %></li>
-        <li><%= link_to "Products", admin_products_path %></li>
-      </ul>
-    </li>
+
+    <!-- Back Room Dropdown Menu-->
+    <% if user_signed_in? %>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Backroom <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Brands", admin_brands_path %></li>
+          <li><%= link_to "Categories", admin_categories_path %></li>
+          <li><%= link_to "Products", admin_products_path %></li>
+        </ul>
+      </li>
+    <% end %>
+
   </ul>
 
-
-
-
-
-
-
+  <!-- Right Navbar -->
   <ul class="nav navbar-nav navbar-right">
 
     <li><%= link_to fa_icon('shopping-cart', text: 'Your Cart'), edit_cart_path %></li>
+
     <!-- Search Form -->
     <div class="pull-left">
       <%= form_tag(shop_path, method: :get, role: "search", class: "form-inline") do %>
@@ -43,7 +48,7 @@
       <% end %>
     </div>
 
-
+    <!-- Login / Logout -->
     <% if user_signed_in? %>
       <!-- Account -->
       <li><%= link_to 'Account', edit_user_registration_path %></li>
