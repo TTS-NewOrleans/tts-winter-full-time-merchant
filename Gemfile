@@ -41,6 +41,7 @@ gem 'stamp'
 gem 'simple_form'
 gem 'paperclip', '~> 4.3'
 gem 'devise'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,6 +63,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'aws-sdk', '< 2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
