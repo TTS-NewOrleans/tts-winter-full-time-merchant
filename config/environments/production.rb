@@ -10,6 +10,7 @@ Rails.application.configure do
       secret_access_key: ENV['aws_secret_access_key']
     }
   }
+  config.action_controller.asset_host = ENV['full_domain']
 
   # Mailer configuration
   config.action_mailer.asset_host = ENV['full_domain']
@@ -28,7 +29,7 @@ Rails.application.configure do
   #   host: Rails.application.secrets.domain_name
   # }
   # config.action_mailer.perform_deliveries = true
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
 
   # Code is not reloaded between requests.
   config.cache_classes = true
