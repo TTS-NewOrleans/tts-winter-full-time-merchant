@@ -10,20 +10,20 @@ Rails.application.configure do
       secret_access_key: ENV['aws_secret_access_key']
     }
   }
+
   config.action_controller.asset_host = ENV['full_domain']
 
-  # Mailer configuration
+  # Mailers
   config.action_mailer.asset_host = ENV['full_domain']
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: ENV['domain'],
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV['gmail_username'],
-    password: ENV['gmail_password']
-  }
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               ENV['domain'],
+    user_name:            ENV['gmail_username'],
+    password:             ENV['gmail_password'],
+    authentication:       'plain',
+    enable_starttls_auto: true  }
 
   # config.action_mailer.default_url_options = {
   #   host: Rails.application.secrets.domain_name
