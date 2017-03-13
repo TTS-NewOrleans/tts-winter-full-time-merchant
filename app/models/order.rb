@@ -14,4 +14,8 @@ class Order < ApplicationRecord
       line_items << item
     end
   end
+
+  def subtotal
+    line_items.select("SUM(quantity * price) AS sum")[0].sum
+  end
 end

@@ -29,6 +29,10 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Use Letter Opener for development emails
+  config.action_mailer.default_url_options = { host: 'localhost' }
+  config.action_mailer.delivery_method = :letter_opener
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
